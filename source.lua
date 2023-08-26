@@ -1764,9 +1764,8 @@ function OrionLib:Destroy()
 end
 
 function OrionLib:Visible(bool)
-	return Orion
-	--print("the visibility is "+bool)
-	--Orion.Enabled = bool
+	--return Orion
+	Orion.Enabled = bool
 end
 
 return OrionLib
