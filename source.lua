@@ -1765,7 +1765,7 @@ end
 
 function OrionLib:Visible(bool)
 	--return Orion
-	Orion.Enabled = bool
+	game.CoreGui.Orion.Enabled = bool
 end
 
 return OrionLib
