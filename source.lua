@@ -1763,4 +1763,8 @@ function OrionLib:Destroy()
 	Orion:Destroy()
 end
 
+function OrionLib.Visible(bool)
+	Orion.Enabled = bool
+end
+
 return OrionLib
