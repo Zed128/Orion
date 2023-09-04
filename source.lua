@@ -1446,6 +1446,7 @@ function OrionLib:MakeWindow(WindowConfig)
 				end)
 
 				function elementConfig:Set(Value)
+					TextboxConfig.Callback(TextboxActual.Text)
 					TextboxActual.Text = tostring(Value)
 				end
 
