@@ -1356,9 +1356,9 @@ function OrionLib:MakeWindow(WindowConfig)
 					Bind.Value = Key or Bind.Value
 					Bind.Value = Bind.Value.Name or Bind.Value
 					BindBox.Value.Text = Bind.Value
-					print("key:" Key)
-					print("Bind.Value.Name: " Bind.Value.Name)
-					print("bind value: " Bind.Value)
+					-- print("key:" Key)
+					-- print("Bind.Value.Name: " Bind.Value.Name)
+					-- print("bind value: " Bind.Value)
 				end
 
 				Bind:Set(BindConfig.Default)
