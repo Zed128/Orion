@@ -450,7 +450,7 @@ function OrionLib:MakeNotification(NotificationConfig)
 end    
 
 function OrionLib:Init()
-	if OrionLib.SaveCfg then
+	if OrionLib.SaveCfg then	
 		pcall(function()
 			if isfile(OrionLib.Folder .. "/" .. game.GameId .. ".txt") then
 				LoadCfg(readfile(OrionLib.Folder .. "/" .. game.GameId .. ".txt"))
@@ -1356,9 +1356,6 @@ function OrionLib:MakeWindow(WindowConfig)
 					Bind.Value = Key or Bind.Value
 					Bind.Value = Bind.Value.Name or Bind.Value
 					BindBox.Value.Text = Bind.Value
-                    print("key: ",Key)
-                    print("Bind.Value: ",Bind.Value)
-                    print("Bind.Value.Name: ",Bind.Value.Name)
 				end
 
 				Bind:Set(BindConfig.Default)
@@ -1368,8 +1365,6 @@ function OrionLib:MakeWindow(WindowConfig)
 				return Bind
 			end  
 			function ElementFunction:AddTextbox(TextboxConfig)
-				local elementConfig = {}
-
 				TextboxConfig = TextboxConfig or {}
 				TextboxConfig.Name = TextboxConfig.Name or "Textbox"
 				TextboxConfig.Default = TextboxConfig.Default or ""
@@ -1447,13 +1442,6 @@ function OrionLib:MakeWindow(WindowConfig)
 				AddConnection(Click.MouseButton1Down, function()
 					TweenService:Create(TextboxFrame, TweenInfo.new(0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundColor3 = Color3.fromRGB(OrionLib.Themes[OrionLib.SelectedTheme].Second.R * 255 + 6, OrionLib.Themes[OrionLib.SelectedTheme].Second.G * 255 + 6, OrionLib.Themes[OrionLib.SelectedTheme].Second.B * 255 + 6)}):Play()
 				end)
-
-				function elementConfig:Set(Value)
-					TextboxConfig.Callback(Value)
-					TextboxActual.Text = tostring(Value)
-				end
-
-				return elementConfig
 			end 
 			function ElementFunction:AddColorpicker(ColorpickerConfig)
 				ColorpickerConfig = ColorpickerConfig or {}
@@ -1771,26 +1759,12 @@ function OrionLib:MakeWindow(WindowConfig)
 	return TabFunction
 end   
 
-function OrionLib:Destroy()
-	Orion:Destroy()
+function OrionLib:Visible(bool)
+	Orion.Enabled = bool
 end
 
-function OrionLib:Visible(bool,hideGuiBindText)
-    if bool == true then
-        MainWindow.Visible = true
-		UIHidden = false
-    elseif bool == false then
-        MainWindow.Visible = false
-		UIHidden = true
-        if hideGuiBindText == nil then else
-		    OrionLib:MakeNotification({
-			    Name = "Interface Hidden",
-			    Content = "Tap "..hideGuiBindText.." to reopen the interface",
-			    Time = 5
-		    })
-        end
-		WindowConfig.CloseCallback()
-    end
+function OrionLib:Destroy()
+	Orion:Destroy()
 end
 
 return OrionLib
