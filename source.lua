@@ -468,7 +468,7 @@ function OrionLib:MakeWindow(WindowConfig)
 	local FirstTab = true
 	local Minimized = false
 	local Loaded = false
-	UIHidden = false
+	local UIHidden = false
 
 	WindowConfig = WindowConfig or {}
 	WindowConfig.Name = WindowConfig.Name or "Orion Library"
@@ -1356,9 +1356,6 @@ function OrionLib:MakeWindow(WindowConfig)
 					Bind.Value = Key or Bind.Value
 					Bind.Value = Bind.Value.Name or Bind.Value
 					BindBox.Value.Text = Bind.Value
-					-- print("key:" Key)
-					-- print("Bind.Value.Name: " Bind.Value.Name)
-					-- print("bind value: " Bind.Value)
 				end
 
 				Bind:Set(BindConfig.Default)
@@ -1771,27 +1768,13 @@ function OrionLib:MakeWindow(WindowConfig)
 	return TabFunction
 end   
 
--- function OrionLib:Visible(Value)
--- 	if Value == true then
--- 		MainWindow.Visible = true
--- 		UIHidden = false
--- 	elseif Value == false then
--- 		MainWindow.Visible = false
--- 		UIHidden = true
--- 		OrionLib:MakeNotification({
--- 			Name = "Interface Hidden",
--- 			Content = "Tap F1 to reopen the interface",
--- 			Time = 5
--- 		})
--- 	end
--- end
-
--- function OrionLib:IsOpened()
--- 	return not UIHidden
--- end
-
 function OrionLib:Destroy()
 	Orion:Destroy()
+end
+
+function OrionLib:Visible(bool)
+	--return Orion
+	Orion.Enabled = bool
 end
 
 return OrionLib
