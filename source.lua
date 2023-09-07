@@ -450,7 +450,7 @@ function OrionLib:MakeNotification(NotificationConfig)
 end    
 
 function OrionLib:Init()
-	if OrionLib.SaveCfg then	
+	if OrionLib.SaveCfg then
 		pcall(function()
 			if isfile(OrionLib.Folder .. "/" .. game.GameId .. ".txt") then
 				LoadCfg(readfile(OrionLib.Folder .. "/" .. game.GameId .. ".txt"))
@@ -1775,9 +1775,22 @@ function OrionLib:Destroy()
 	Orion:Destroy()
 end
 
-function OrionLib:Visible(bool)
-	--return Orion
-	Orion.Enabled = bool
+function OrionLib:Visible(bool,hideGuiBindText)
+    if bool == true then
+        MainWindow.Visible = true
+		UIHidden = false
+    elseif bool == false then
+        MainWindow.Visible = false
+		UIHidden = true
+        if hideGuiBindText == nil then else
+		    OrionLib:MakeNotification({
+			    Name = "Interface Hidden",
+			    Content = "Tap "..hideGuiBindText.." to reopen the interface",
+			    Time = 5
+		    })
+        end
+		WindowConfig.CloseCallback()
+    end
 end
 
 return OrionLib
