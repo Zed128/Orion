@@ -1771,24 +1771,24 @@ function OrionLib:MakeWindow(WindowConfig)
 	return TabFunction
 end   
 
-function OrionLib:Visible(Value)
-	if Value == true then
-		MainWindow.Visible = true
-		UIHidden = false
-	elseif Value == false then
-		MainWindow.Visible = false
-		UIHidden = true
-		OrionLib:MakeNotification({
-			Name = "Interface Hidden",
-			Content = "Tap F1 to reopen the interface",
-			Time = 5
-		})
-	end
-end
+-- function OrionLib:Visible(Value)
+-- 	if Value == true then
+-- 		MainWindow.Visible = true
+-- 		UIHidden = false
+-- 	elseif Value == false then
+-- 		MainWindow.Visible = false
+-- 		UIHidden = true
+-- 		OrionLib:MakeNotification({
+-- 			Name = "Interface Hidden",
+-- 			Content = "Tap F1 to reopen the interface",
+-- 			Time = 5
+-- 		})
+-- 	end
+-- end
 
-function OrionLib:IsOpened()
-	return not UIHidden
-end
+-- function OrionLib:IsOpened()
+-- 	return not UIHidden
+-- end
 
 function OrionLib:Destroy()
 	Orion:Destroy()
