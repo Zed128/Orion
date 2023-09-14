@@ -49,10 +49,10 @@ end
 local Orion = Instance.new("ScreenGui")
 Orion.Name = "Orion"
 if syn then
-	syn.protect_gui(Orion)
+	--syn.protect_gui(Orion)
 	Orion.Parent = game.CoreGui
 else
-	Orion.Parent = gethui() or game.CoreGui
+	Orion.Parent = game.CoreGui --gethui() or game.CoreGui
 end
 
 if gethui then
@@ -71,7 +71,7 @@ end
 
 function OrionLib:IsRunning()
 	if gethui then
-		return Orion.Parent == gethui()
+		return Orion.Parent == game:GetService("CoreGui") --gethui()
 	else
 		return Orion.Parent == game:GetService("CoreGui")
 	end
