@@ -1774,6 +1774,7 @@ function OrionLib:Visible(bool)
   UIHidden = not bool
 end
 function OrionLib:GetIfVisible()
+  print(MainWindow.Visible)
 	return MainWindow.Visible
 end
 
