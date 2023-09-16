@@ -1769,7 +1769,12 @@ function OrionLib:MakeWindow(WindowConfig)
 end   
 
 function OrionLib:Visible(bool)
-	Orion.Enabled = bool
+	-- Orion.Enabled = bool
+  MainWindow.Visible = bool
+  UIHidden = not bool
+end
+function OrionLib:GetIfVisible()
+	return MainWindow.Visible
 end
 
 function OrionLib:Destroy()
