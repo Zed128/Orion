@@ -635,6 +635,7 @@ function OrionLib:MakeWindow(WindowConfig)
 		DragPoint,
 		WindowStuff
 	}), "Main")
+  OrionLib.mainWindow = MainWindow
 
 	if WindowConfig.ShowIcon then
 		WindowName.Position = UDim2.new(0, 50, 0, -24)
@@ -1772,10 +1773,6 @@ function OrionLib:Visible(bool)
 	-- Orion.Enabled = bool
   MainWindow.Visible = bool
   UIHidden = not bool
-end
-function OrionLib:GetIfVisible()
-  print(MainWindow.Visible)
-	return MainWindow.Visible
 end
 
 function OrionLib:Destroy()
