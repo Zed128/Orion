@@ -600,7 +600,7 @@ function OrionLib:MakeWindow(WindowConfig)
 		Position = UDim2.new(0, 0, 1, -1)
 	}), "Stroke")
 
-	MainWindow = AddThemeObject(SetChildren(SetProps(MakeElement("RoundFrame", Color3.fromRGB(255, 255, 255), 0, 10), {
+	local MainWindow = AddThemeObject(SetChildren(SetProps(MakeElement("RoundFrame", Color3.fromRGB(255, 255, 255), 0, 10), {
 		Parent = Orion,
 		Position = UDim2.new(0.5, -307, 0.5, -172),
 		Size = UDim2.new(0, 615, 0, 344),
@@ -651,11 +651,11 @@ function OrionLib:MakeWindow(WindowConfig)
 	AddConnection(CloseBtn.MouseButton1Up, function()
 		MainWindow.Visible = false
 		UIHidden = true
-		OrionLib:MakeNotification({
-			Name = "Interface Hidden",
-			Content = "Tap RightShift to reopen the interface",
-			Time = 5
-		})
+		-- OrionLib:MakeNotification({
+		-- 	Name = "Interface Hidden",
+		-- 	Content = "Tap RightShift to reopen the interface",
+		-- 	Time = 5
+		-- })
 		WindowConfig.CloseCallback()
 	end)
 
@@ -723,6 +723,16 @@ function OrionLib:MakeWindow(WindowConfig)
 	end	
 
 	local TabFunction = {}
+	function TabFunction:Visible(bool)
+		if bool == false then
+			WindowConfig.CloseCallback()
+		end
+		MainWindow.Visible = bool
+		UIHidden = not bool
+	end
+	function TabFunction:IsVisible()
+		  return MainWindow.Visible
+	end
 	function TabFunction:MakeTab(TabConfig)
 		TabConfig = TabConfig or {}
 		TabConfig.Name = TabConfig.Name or "Tab"
@@ -1769,14 +1779,6 @@ function OrionLib:MakeWindow(WindowConfig)
 	return TabFunction
 end   
 
-function OrionLib:Visible(bool)
-	-- Orion.Enabled = bool
-  MainWindow.Visible = bool
-  UIHidden = not bool
-end
-function OrionLib:IsVisible()
-  return MainWindow.Visible
-end
 function OrionLib:Destroy()
 	Orion:Destroy()
 end
